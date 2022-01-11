@@ -15,7 +15,6 @@
  */
 class Solution {
     List<List<Integer>> a=new ArrayList<>();
-    List<Integer> temp=new ArrayList<>();
     public List<List<Integer>> levelOrder(TreeNode root) {
         int index=0;
         traversal(root,index);
