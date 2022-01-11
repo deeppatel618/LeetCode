@@ -14,18 +14,18 @@
  * }
  */
 class Solution {
-    int target=0;
-    public boolean traversalSum(TreeNode root,int sum)
-    {
-        if(root== null) return false;
-        sum+=root.val;
-        if(root.left == null && root.right == null){
-            return sum==target;
+    int target = 0;
+    boolean checkSum(TreeNode t, int csum){
+        if(t==null) return false; // Terminate Recurssion
+            csum += t.val;
+        if(t.left == null && t.right == null){ // Check if this is the leaf node
+            return csum == target; // Check the sum
         }
-        return traversalSum(root.left,sum) || traversalSum(root.right,sum);
+        return checkSum(t.left, csum) || checkSum(t.right, csum); // Go ahead in both the directions
+        
     }
-    public boolean hasPathSum(TreeNode root, int targetSum) {
-        target=targetSum;
-        return traversalSum(root,0);
+     public boolean hasPathSum(TreeNode root, int targetSum) {
+        target = targetSum;
+         return checkSum(root,0);
     }
 }
