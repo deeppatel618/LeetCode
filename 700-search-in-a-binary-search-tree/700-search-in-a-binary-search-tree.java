@@ -25,6 +25,7 @@ class Solution {
         System.out.println(root.val);
         if(root.val == target)
         {
+            System.gc();
                 return root;
         }
         if(root.val < target) return Search(root.right);
