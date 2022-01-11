@@ -15,7 +15,6 @@
  */
 
 class Solution {
-    List<List<Integer>> a=new ArrayList<>();
     int max=0;
     public int maxDepth(TreeNode root) {
         int index=0;
@@ -27,10 +26,6 @@ class Solution {
     {
         if(rt == null)
             return;
-        if(a.size()<index+1) {
-             a.add(new ArrayList<>());
-        }
-        a.get(index).add(rt.val);
         index++;
         if(max<index) max=index;
         traversal(rt.left,index);
