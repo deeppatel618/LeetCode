@@ -5,8 +5,9 @@ public class Solution extends VersionControl {
 public int firstBadVersion(int n) {
         int left = 1;
         int right = n;
+    
         while (left < right) {
-            n = left + (right - left) / 2;
+            n = left/2 + right/2;
             if (isBadVersion(n)) {
                 right = n;
             } else {
