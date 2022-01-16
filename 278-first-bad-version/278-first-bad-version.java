@@ -7,7 +7,8 @@ public int firstBadVersion(int n) {
         int right = n;
     
         while (left<right) {
-            n = (left>>1) + (right>>1);
+            n = left>>1;
+            n += right>>1;
             if (isBadVersion(n)) {
                 right = n;
             } else {
