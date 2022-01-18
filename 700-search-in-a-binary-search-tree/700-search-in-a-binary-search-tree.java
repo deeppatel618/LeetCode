@@ -22,7 +22,7 @@ class Solution {
     }
     public TreeNode Search(TreeNode root){
         if(root==null) return null;
-        System.out.println(root.val);
+        // System.out.println(root.val);
         if(root.val == target)
         {
             System.gc();
