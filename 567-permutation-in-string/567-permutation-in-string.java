@@ -9,7 +9,7 @@ class Solution {
             temp[s2.charAt(i) - 'a']+=1;
         }
         for (int i = 0; i < s2.length()-patternLength; i++) {
-            if(Arrays.equals(arr,temp)){
+            if( matches(arr, temp)){
                 return true;
             }
             else{
@@ -21,5 +21,12 @@ class Solution {
             return true;
         }
         return false;
+    }
+    public boolean matches(int[] s1map, int[] s2map) {
+        for (int i = 0; i < 26; i++) {
+            if (s1map[i] != s2map[i])
+                return false;
+        }
+        return true;
     }
 }
