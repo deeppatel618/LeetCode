@@ -8,12 +8,11 @@ class Solution {
         while(starting<=ending)
         {
             if(a[starting]!=a[ending]){
-                flag=false;
-                break;
+                return false;
             }
             starting+=1;
             ending-=1;
         }
-       return flag;
+       return true;
     }
 }
