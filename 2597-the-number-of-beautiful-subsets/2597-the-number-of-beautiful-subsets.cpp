@@ -1,27 +1,27 @@
 class Solution {
 public:
-    vector<int>* nums;
+  
     int difference=0;
-    unordered_map<int,int> freqMap;
+    
     int beautifulSubsets(vector<int>& nums, int k) {
         sort(nums.begin(),nums.end());
-        this->nums = &nums;
+        unordered_map<int,int> freqMap;
         difference  = k;
-        return subsetCounter(0) - 1;
+        return subsetCounter(0,freqMap,k,nums) - 1;
     }
-    int subsetCounter(int i)
+    int subsetCounter(int i, unordered_map<int,int> &freqMap,int difference, vector<int> &nums)
     {
-        if(i == (*nums).size())
+        if(i == nums.size())
         {
             return 1;
         }
-        int totalCount = subsetCounter(i+1);
+        int totalCount = subsetCounter(i+1,freqMap,difference,nums);
 
-        if(!freqMap[(*nums)[i] - difference])
+        if(!freqMap[nums[i] - difference])
         {
-            freqMap[(*nums)[i]]++;
-            totalCount += subsetCounter(i+1);
-            freqMap[(*nums)[i]]--;
+            freqMap[nums[i]]++;
+            totalCount += subsetCounter(i+1,freqMap,difference,nums);
+            freqMap[nums[i]]--;
         }
         return totalCount;
     }
