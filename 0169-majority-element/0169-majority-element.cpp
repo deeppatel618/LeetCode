@@ -6,8 +6,11 @@ public:
         for(auto i : nums)
         {
             if(counter == 0)
+            {
                 candidate = i;
-            if(i == candidate)
+                counter++;
+            }
+            else if(i == candidate)
                 counter ++;
             else 
                 counter --;
