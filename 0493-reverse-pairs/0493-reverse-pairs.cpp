@@ -1,8 +1,9 @@
 class Solution {
 public:
-    int counter = 0;
-    void countPairs(vector<int>& nums,int low,int mid,int high)
+    // int counter = 0;
+    int countPairs(vector<int>& nums,int low,int mid,int high)
     {
+        int counter =0;
         int right= mid+1;
         for(int i = low; i<=mid ; i++)
         {
@@ -12,6 +13,7 @@ public:
             }
             counter += (right - (mid+1));
         }
+        return counter;
     }
     void merge(vector<int>& nums,int low, int mid,int high)
     {
@@ -46,23 +48,25 @@ public:
             nums[i] = temp[i-low];
         }
     }
-    void mergeSort(vector<int>& nums,int low,int high)
+    int mergeSort(vector<int>& nums,int low,int high)
     {
-        if(low>=high) return;
+        int counter=0;
+        if(low>=high) return counter;
         int mid = (low+high)/2;
-        mergeSort(nums,low,mid);
-        mergeSort(nums,mid+1,high);
-        countPairs(nums,low,mid,high);
+        counter+=mergeSort(nums,low,mid);
+        counter+=mergeSort(nums,mid+1,high);
+        counter+=countPairs(nums,low,mid,high);
         merge(nums,low,mid,high);
+        return counter;
     }
 
     int reversePairs(vector<int>& nums) {
-        mergeSort(nums,0, nums.size()-1);
-        for(int i = 0; i < nums.size();i++)
-        {
-            cout<<nums[i]<<" ";
-        }
+        return mergeSort(nums,0, nums.size()-1);
+        // for(int i = 0; i < nums.size();i++)
+        // {
+        //     cout<<nums[i]<<" ";
+        // }
 
-        return counter;
+        // return counter;
     }
 };
