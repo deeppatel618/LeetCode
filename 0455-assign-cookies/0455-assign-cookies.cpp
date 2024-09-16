@@ -4,17 +4,17 @@ public:
         if(g.size()==0 || s.size()==0) return 0;
        sort(g.begin(),g.end()); 
        sort(s.begin(),s.end());
-       int child = g.size()-1;
-       int cookie = s.size()-1;
-       while(child >= 0 && cookie >= 0)
+       int child = 0;
+       int cookie = 0;
+       while(cookie < s.size() && child<g.size())
        {
         // cout<<g[child]<<","<<s[cookie]<<endl;÷
-         if(g[child] <= s[cookie])
+         if(s[cookie] >= g[child])
          {
-            cookie--;
+            child++;
          }
-            child--;
+            cookie++;
        } 
-       return s.size() - (cookie+1);
+       return child;
     }
 };
