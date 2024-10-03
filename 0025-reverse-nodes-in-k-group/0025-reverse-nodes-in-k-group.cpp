@@ -11,6 +11,7 @@
 class Solution {
 public:
     ListNode* reverseKGroup(ListNode* head, int k) {
+        if(!head || k==1) return head;
         ListNode* dummy = new ListNode(0);
         dummy->next = head;
 
