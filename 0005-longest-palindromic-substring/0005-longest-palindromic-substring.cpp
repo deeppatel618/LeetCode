@@ -30,6 +30,6 @@ public:
             }
         }
         // cout<<ans;
-        return s.substr(start, start + ans);
+        return s.substr(start, ans);
     }
 };
