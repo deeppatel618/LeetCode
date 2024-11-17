@@ -2,6 +2,11 @@ class Solution {
 public:
     double binarysearch(vector<int> num1,vector<int> num2)
     {
+        // Binary search to partition the two sorted arrays into two halves such that:
+        // 1. The left half contains the smaller half of the total elements from both arrays.
+        // 2. The right half contains the larger half, ensuring correct median calculation.
+        // This partitioning ensures that the combined left half has equal or one more element 
+        // than the combined right half, allowing us to calculate the median efficiently.
         if(num1.size() > num2.size())
         {
             return binarysearch(num2,num1);
@@ -11,9 +16,11 @@ public:
         int l1,l2,r1,r2;
         while(low<=high)
         {
-            mid = (low+high)/2;
+            // mid = (low+high)/2;
+            mid = low + (high-low)/2;
             mid2 = (totalLen / 2) - mid;
 
+            
             l1 = (mid == 0) ? INT_MIN : num1[mid - 1];
             r1 = (mid == num1.size()) ? INT_MAX : num1[mid];
             l2 = (mid2 == 0) ? INT_MIN : num2[mid2 - 1];
