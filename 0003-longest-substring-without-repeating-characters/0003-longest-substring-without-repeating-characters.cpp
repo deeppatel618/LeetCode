@@ -1,20 +1,24 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        vector<int> tracker(256,-1);
+        //sliding window with vector to keep track of last location of particular char.
+        vector<int> mp(256,-1);
         int left = 0;
         int right = 0;
-        int ans=0;
-        while(right < s.size())
+        int maxLen = 0;
+        while(right< s.size())
         {
-            if(tracker[s[right]] != -1)
+            //already seen this character before
+            if(mp[s[right]] != -1)
             {
-                left = max(tracker[s[right]] + 1,left);    
+                left = max(left, mp[s[right]] + 1 );
             }
-            tracker[s[right]] = right;
-            ans = max(right-left+1,ans);
+            //update char location.
+            mp[s[right]] = right;
+            maxLen = max(right-left+1,maxLen);
             right++;
         }
-        return ans;
+        return maxLen;
+
     }
 };
