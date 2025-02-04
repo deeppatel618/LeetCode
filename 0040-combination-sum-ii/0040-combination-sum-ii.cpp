@@ -11,6 +11,7 @@ public:
         for(int i=index; i<nums.size();i++)
         {
             if(i>index && nums[i] == nums[i-1]) continue;
+            if(nums[index]>target) break;
         temp.push_back(nums[i]);
         combinationSumTracker(i+1,sum+nums[i],ans,nums,target,temp);
         temp.pop_back();
