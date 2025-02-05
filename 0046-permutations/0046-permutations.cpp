@@ -1,5 +1,8 @@
 class Solution {
 public:
+    // Pick and not pick can work here but we need extra data structure to keep track of which element is picked up. 
+    // To avoid extra space. We can use swap to give chance to all the elements to be at a certain position.
+    // For [1,2,3] - > We can have [1,2,3], [2,1,3],[3,2,1] and so on.
     void swap(int i, int j, vector<int> &nums)
     {
         int temp = nums[i];
@@ -25,4 +28,5 @@ public:
         permutationCalculator(0,nums,ans);
         return ans;
     }
+    //what you should say in an interview: O(n⋅n!)
 };
