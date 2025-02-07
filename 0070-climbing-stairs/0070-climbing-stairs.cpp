@@ -1,22 +1,29 @@
 class Solution {
 public:
-    
-   
     int climbStairs(int n) {
-        vector<int> dp(n+1,-1);
-        
-        return countStep(n,dp);
+        // return calculateSteps(0,n);
+
+        vector<int> memo(n,0);
+        return calculateStepsDp(0,n,memo);
     }
-    
-    int countStep(int steps,vector<int> &dp)
+
+    // Brute Force solution 1
+    int calculateSteps(int step, int n)
     {
-        if(steps == 0) return 1;
-        if(steps == 1) return 1;
-        if(dp[steps] != -1)
-        {
-            return dp[steps];
-        }
-        
-        return dp[steps] = countStep(steps-1,dp)+countStep(steps-2,dp);
+        if(step > n ) return 0;
+        if(step == n) return 1;
+
+        return calculateSteps(step+1,n) + calculateSteps(step+2,n);
+    }
+
+    int calculateStepsDp(int step, int n,vector<int> &memo)
+    {
+        if(step > n ) return 0;
+        if(step == n) return 1;
+        if(memo[step]>0) return memo[step];
+
+        memo[step] = calculateStepsDp(step+1,n,memo) + calculateStepsDp(step+2,n,memo);
+
+        return memo[step];
     }
 };
