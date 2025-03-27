@@ -24,12 +24,13 @@ public:
 				q.push(i);
 			}
 		}
-		vector<int> topo;
+		// vector<int> topo;
+        int visitedNodes = 0;
         // Remove the node which has in degree 0 and update other nodes 
 		while (!q.empty()) {
 			int node = q.front();
 			q.pop();
-			topo.push_back(node);
+			visitedNodes++;
 			// node is in your topo sort
 			// so remove it from the indegree
 
@@ -39,7 +40,7 @@ public:
 			}
 		}
 
-		if (topo.size() == numCourses) return true;
+		if (visitedNodes == numCourses) return true;
 		return false;
     }
 };
