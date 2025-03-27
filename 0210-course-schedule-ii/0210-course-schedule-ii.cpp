@@ -5,7 +5,7 @@ public:
 
         for(auto it:prerequisites)
         {
-            adj[it[0]].push_back(it[1]); // Create adjacency list.
+            adj[it[1]].push_back(it[0]); // Create adjacency list.
         }
 
         // Logic of topological sort.
@@ -32,16 +32,18 @@ public:
 			topo.push_back(node);
 			// node is in your topo sort
 			// so remove it from the indegree
-
+            cout<<"The node is"<<node<<endl;
 			for (auto it : adj[node]) {
+                cout<<it<<" ";
 				indegree[it]--;
 				if (indegree[it] == 0) q.push(it);
 			}
+            cout<<endl;
 		}
 
 		if (topo.size() == numCourses)
         {
-            reverse(topo.begin(),topo.end());
+            // reverse(topo.begin(),topo.end());
             return topo;
         } 
 		return {};
