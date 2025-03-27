@@ -12,7 +12,7 @@ public:
         
         vector<int> indegree(numCourses,0);// Calculate in degree of all the nodes.
 		for (int i = 0; i < numCourses; i++) {
-			for (auto it : adj[i]) {
+			for (auto it : adj[i]) { // we are iterating over the adjaceny list and not the key.. If preq of 1 and 2 is 0. Then the adj[0] = {1,2}. So Indegree of 1 and 2 is 1.
 				indegree[it]++;
 			}
 		}
@@ -32,18 +32,18 @@ public:
 			topo.push_back(node);
 			// node is in your topo sort
 			// so remove it from the indegree
-            cout<<"The node is"<<node<<endl;
+
 			for (auto it : adj[node]) {
-                cout<<it<<" ";
+
 				indegree[it]--;
 				if (indegree[it] == 0) q.push(it);
 			}
-            cout<<endl;
+
 		}
 
 		if (topo.size() == numCourses)
         {
-            // reverse(topo.begin(),topo.end());
+
             return topo;
         } 
 		return {};
