@@ -1,6 +1,12 @@
 class Solution {
 public:
     // sliding window
+    //Expand right until we get a valid window.
+    //Then shrink from left as much as possible while keeping the window valid.
+    //Keep track of the smallest valid window.
+    // keep in mind that we have to track duplicates also.
+    // One map to count the frequency of characters. another to keep track of freq in the window.
+
     string minWindow(string s, string t) {
         if(s.size() < t.size()) return "";
         unordered_map<char,int> tCount;
@@ -47,4 +53,7 @@ public:
         return ans[0] == -1? "": s.substr(ans[1], ans[0] );
     }
     // O(m + n) m = size of s and n = size of t.
+    // O(m + n) - if the window size equal to string then O(m). if all the characters in t is unique then it will be O(n)
 };
+// To optimize the string little bit we can remove the characters whicha are not present in the t string.
+// Create one vector<element> = {{'A',0},{'B',0}}; char and location.
