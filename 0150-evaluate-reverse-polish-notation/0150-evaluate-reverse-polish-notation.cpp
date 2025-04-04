@@ -1,5 +1,7 @@
 class Solution {
 public:
+    // Reason - In Reverse Polish Notation (RPN), operators follow their operands, so we can immediately perform an operation whenever we encounter an operator in the array.
+    
     // Insert all the integers into the stack, if you encounter any symbol then fetch top 2 integers and perform the operation.
     // After the opeation, insert the answer into stack.
     int evalRPN(vector<string>& tokes) {
