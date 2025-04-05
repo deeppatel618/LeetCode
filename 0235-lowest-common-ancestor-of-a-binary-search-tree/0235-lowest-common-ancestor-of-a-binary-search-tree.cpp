@@ -10,8 +10,10 @@
 
 class Solution {
 public:
+    // If both p and q are on the right side, then move to right side. If they are on left move to left side. if they split then that would be the answer.
+    
     // Recursive approach 1
-
+    // O(n) O(n)
 
     // TreeNode* lca(TreeNode* root, TreeNode* p, TreeNode* q)
     // {
@@ -29,7 +31,8 @@ public:
 
     // }
 
-    // Iterative approach 2 (Same logic)
+    // Iterative approach 2 (Same logic) 
+    // O(n) O(1)
     TreeNode* lca(TreeNode* root, TreeNode* p, TreeNode* q)
     {
         if(root == NULL) return NULL;
