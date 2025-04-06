@@ -19,6 +19,8 @@ public:
         backtracking(nums,0,{},ans);
         return ans;
     }
+    // TC - O(N * 2^N) to generate all the subsets and copy them into the answer array
+    // SC - O(N * 2^N)
 
     // Approach 2 
     void backtracking(vector<int> &nums,int index, vector<int> ds, vector<vector<int>> &ans)
@@ -32,4 +34,6 @@ public:
             ds.pop_back();
         }
     }
+     // TC - O(N * 2^N) to generate all the subsets and copy them into the answer array
+     // SC - O(N). we are taking ds to perfrom the task which will store at max N elements
 };
