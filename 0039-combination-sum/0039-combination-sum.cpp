@@ -17,7 +17,7 @@ public:
 
     void combinationCalculator(int index, int target, vector<int> curr, vector<int> candidates, vector<vector<int>> &ans)
     {
-        if(target <= 0 || index == candidates.size())
+        if(target == 0 || index == candidates.size())
         {
             if(target == 0)
             {
