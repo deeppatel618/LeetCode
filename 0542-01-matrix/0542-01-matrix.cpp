@@ -35,10 +35,10 @@ public:
 
                 if(neighborRow>=0 && neighborRow<rows && neighborCol>=0 && neighborCol<cols && visited[neighborRow][neighborCol] == 0)
                 {
-                    if(mat[neighborRow][neighborCol] == 1){
+                   
                         visited[neighborRow][neighborCol] =1;
                         q.push({{neighborRow,neighborCol},dist+1});
-                    }
+                    
                 }
             }
 
