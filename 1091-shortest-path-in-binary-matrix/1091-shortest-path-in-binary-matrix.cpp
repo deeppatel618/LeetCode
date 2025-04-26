@@ -6,8 +6,12 @@ public:
         queue<pair<int,pair<int,int>>> q;
         vector<vector<int>> dist(n,vector<int>(n,1e9));
         dist[0][0] = 1; // You change the soruce according to the requirment
-        if(grid[0][0] == 0)
+        if(grid[0][0] == 0 && n == 1)
+            return 1;
+        else if(grid[0][0] == 0)
             q.push({1,{0,0}});
+        else
+            return -1;
         vector<vector<int>> directions = {{-1,0},{1,0},{0,-1},{0,1},{1,1},{-1,-1},{1,-1},{-1,1}};
         while(!q.empty()){
             auto it = q.front();
@@ -29,7 +33,7 @@ public:
                 }
             }
         }
-        return dist[n-1][n-1] == 1e9? -1:1;
+        return -1;
 
     }
 };
