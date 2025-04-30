@@ -1,28 +1,30 @@
 class Solution {
 public:
-    int rob(vector<int>& arr) {
-        int n=arr.size();
-        if(n==1) return arr[0];
-        vector<int> dp(n+1,-1);
-        dp[0]= arr[0];
-        for(int i=1; i<n-1;i++)
-        {   
-            int left= arr[i];
-            if(i>1) left+=dp[i-2];
-            int right = dp[i-1];
-            dp[i] = max(left,right);
-        }
-        
+    int calculate(vector<int> nums){
+        int prev = nums[0]; // index 0
+        int prev2 = 0; // for now it is index -1
 
-        vector<int> dps(n+1,-1);
-        dps[1]= arr[1];
-        for(int i=2; i<n;i++)
-        {   
-            int left= arr[i];
-            if(i>2) left+=dps[i-2];
-            int right = dps[i-1];
-            dps[i] = max(left,right);
+        int pick,notPick,curr;
+        for(int i = 1;i<nums.size() ; i++)
+        {
+            pick = nums[i]+prev2;
+            notPick = prev;
+            curr = max(pick,notPick);
+            prev2 = prev;
+            prev = curr;
         }
-        return max(dps[n-1],dp[n-2]);
+        return prev;
+    }
+    int rob(vector<int>& nums) {
+        int n = nums.size();
+        if(n == 1) return nums[0]; 
+        vector<int> arr1;
+        vector<int> arr2;
+        
+        for(int i = 0; i<n;i++){
+            if(i != 0) arr1.push_back(nums[i]);
+            if(i != n-1) arr2.push_back(nums[i]);
         }
+        return max(calculate(arr1) ,calculate(arr2));
+    }
 };
