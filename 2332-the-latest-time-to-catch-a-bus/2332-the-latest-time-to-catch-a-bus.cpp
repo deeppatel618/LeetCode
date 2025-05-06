@@ -1,40 +1,43 @@
-// My Code
 class Solution {
 public:
-    int latestTimeCatchTheBus(vector<int>& buses, vector<int>& passengers, int totalCapacity){
+    int latestTimeCatchTheBus(vector<int>& buses, vector<int>& passengers, int capacity) {
         sort(buses.begin(), buses.end());
         sort(passengers.begin(), passengers.end());
-        
+
         int i = 0, j = 0, n = buses.size(), m = passengers.size(), currentCapacity;
-        while(i < n){
+
+        for (int k = 0; k < n; ++k) {
             currentCapacity = 0;
-            while(j < m && currentCapacity < totalCapacity && passengers[j] <= buses[i]){
-                j++;
-                currentCapacity++;
+
+            // Board passengers who can catch this bus
+            while (j < m && passengers[j] <= buses[k] && currentCapacity < capacity) {
+                ++j;
+                ++currentCapacity;
             }
-            
-			// Last Bus
-            if(i == n - 1){
-                j--;
-                // If last bus has some seats left, then reach station at last bus departure time.
-                if(currentCapacity < totalCapacity){
-                    int time = buses[i];
-                    while(j >= 0 && time == passengers[j]){ // if time clashes with other passenger, reach 1 minute early
-                        time--, j--;
-                    }
-                    return time;
-                }else{
-                    // If bus is full, then we have to reach before the last person which is on board
-                    int time = passengers[j] - 1;
-                    j--;
-                    while(j >= 0 && time == passengers[j]){  // if time clashes with other passenger, reach 1 minute early
-                        time--, j--;
-                    }
-                    return time;
+
+            // Last bus logic
+            if (k == n - 1) {
+                --j;
+                int time;
+
+                // Case 1: seats still available → try arriving at the bus time
+                if (currentCapacity < capacity) {
+                    time = buses[k];
+                } else {
+                    // Case 2: bus is full → try before last boarded passenger
+                    time = passengers[j];
                 }
+
+                // Step back if time is already taken
+                while (j >= 0 && time == passengers[j]) {
+                    --time;
+                    --j;
+                }
+
+                return time;
             }
-            i++;
         }
-        return buses.back(); // just compiler thing
+
+        return -1; // Should never be reached
     }
 };
